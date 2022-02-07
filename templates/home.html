@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Navbar -->
+<ul id="navbar_ul">
+  <li class="navbar_li"><a class="navbar_a"href="https://github.com/iamSShan/Billboard-Hit-Predictor.git" target="_blank">GitHub</a></li>
+  <li class="navbar_li"><a class="navbar_a"href="#models_metric">Model Metrics</a></li>
+  <li class="navbar_li"><a class="navbar_a" href="#">Home</a></li>
+</ul>
+
+<!-- Top section -->
+<section id="first_section">
+  <div id="outer_div">
+    <center id="first_heading">
+      <h1> Billboard Hit Predictor</h1>
+    </center>
+    
+    <div class="container">
+      <div class="row" id="dropdown_div"> 
+        <div class="form-group shadow-textarea autocomplete col-6" id="autocomplete">
+          <input type="text" name="song" class="form-control autocomplete-input" id="autocomplete-input" autocomplete="off" placeholder="Start typing.....select song name" style="background-color: #ffffff;border-color:#ffffff;color: #181818" required="required" />
+          <input type="hidden" id="songID">
+          <ul class="autocomplete-result-list"></ul>
+        </div>
+
+        <div class="col-8 col-md-4">
+          <select class="custom-select" id="ml_models">
+            <option selected disabled=>Select Model...</option>
+            <option value="dt">Decision Tree</option>
+            <option value="rf">Random Forest</option>
+            <option value="xgb">XGBoost</option>
+            <option value="lr">Logistic Regression</option>
+            <option value="svc">Support Vector Classifier</option>
+          </select>   
+        </div>
+    </div>  
+      <div class="form-group" id="predict_div">
+        <button class="btn btn-primary btn-block" id="predict_button" disabled="true" >Predict</button><br><br>
+      </div>
+    </div>
+
+    <!-- Results fetched from backend will be stored inside this div -->
+    <div class="output alert alert-success" id="output_div" role="alert" style="display: none;">
+      <p id="predict_result" style="color:#e60d0d"></p>
+    </div>
+    <div id="space_div">
+    </div>
+  </div>
+  </section>
+
+  <!-- Model metrics -->
+  <section id="models_metric">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Model Metrics</h2>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-md-4" style="height:405px;">
+          <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-rocket fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">XGBoost</h4>
+          <p class="text-muted">Accuracy: 85%</p>
+          <p class="text-muted">Precision: 68%</p>
+          <p class="text-muted">Recall: 54%</p>
+        </div>
+        <div class="col-md-4" style="height:405px;">
+          <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-tree fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">Decision Tree</h4>
+          <p class="text-muted">Accuracy: 79%</p>
+          <p class="text-muted">Precision: 50%</p>
+          <p class="text-muted">Recall: 52%</p>
+        </div>
+        <div class="col-md-4" style="height:405px;">
+          <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-random fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">Random Forest</h4>
+          <p class="text-muted">Accuracy: 86%</p>
+          <p class="text-muted">Precision: 76%</p>
+          <p class="text-muted">Recall: 50%</p>
+        </div>
+      </div>
+
+      <div class="row text-center">
+        <div class="col-md-6" style="height:405px;">
+          <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-chart-bar fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">Logistic Regression</h4>
+          <p class="text-muted">Accuracy: 79%</p>
+          <p class="text-muted">Precision: 51%</p>
+          <p class="text-muted">Recall: 14%</p>
+        </div>
+        <div class="col-md-6" style="height:405px;">
+          <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fab fa-hubspot fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">Support Vector Classifier</h4>
+          <p class="text-muted">Accuracy: 86%</p>
+          <p class="text-muted">Precision: 76%</p>
+          <p class="text-muted">Recall: 47%</p>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+    <div id="footer">
+        <p><b>Made with <span style="color: #e25555;">&#9829;</span> by <a href="https://github.com/iamsshan" target="_blank"><i class="fab fa-github" style='font-size:30px'></i></a></b> </p>
+    </div>
+    
+  <!-- The script tag is at the bottom of the body so that the page loads the actual content first, and the scripts afterwards. This means that content is visible to users first -->
+
+   <!-- Reference: https://tarekraafat.github.io/autoComplete.js/ -->
+  <script src="https://unpkg.com/@trevoreyre/autocomplete-js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+  <!-- Sweetalert for beautiful alerts -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <!-- Every time when page is refreshed/opened we get all songs from backend so we can create dropdown in frontend -->
+  <script type="text/javascript">
+    var songs = {{songs |safe}};
+  </script>
+
+  <script type="text/javascript" src="static/js/main.js"></script>
+{% endblock content %}
