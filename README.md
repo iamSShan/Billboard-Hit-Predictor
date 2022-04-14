@@ -14,7 +14,7 @@ A predictive model to predict whether a song can be a billboard hit at the end o
 
 Live at: http://billboardhitpredictor.herokuapp.com/
 
-![Demo Gif](./pre_process/images/demo.gif)
+![Demo Gif](./static/image/demo.gif)
 
 ## Dataset
 
